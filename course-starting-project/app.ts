@@ -1,40 +1,15 @@
-// const person: {
-//     name: string,
-//     age: number,
-//     hobbies: string[],
-//     role: [number, string] // Tuple, fixed-length array
-// } = {
-//     name: "John",
-//     age: 33,
-//     hobbies: ['Sports', 'Cooking'],
-//     role: [2, 'author']
-// }
+let userInput: unknown;
+let userName: string;
 
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
-
-enum Role {ADMIN, READ_ONLY, AUTHOR};
-
-const person = {
-    name: "John",
-    age: 33,
-    hobbies: ['Sports', 'Cooking'],
-    role: Role.ADMIN
+userInput = 5;
+userInput = 'Max';
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
 
-let favoriteActivities: string[];
-favoriteActivities = ['Sports'];
-
-// person.role[1] = 10;
-
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-    console.log(hobby.toUpperCase());
-    // console.log(hobby.map());; // !!! Error !!!
+function generateError(message: string, code: number): never {
+    throw { message: message, errorCode: code };
+    // while (true) {}
 }
 
-if (person.role === Role.ADMIN) {
-    console.log('Is admin');
-}
+generateError('An error occurred! ', 500)
