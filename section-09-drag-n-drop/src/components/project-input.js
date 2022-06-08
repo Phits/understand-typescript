@@ -1,7 +1,4 @@
-/// <reference path="base-component.ts" />
-/// <reference path="../decorators/autobind.ts" />
-/// <reference path="../util/validation.ts" />
-/// <reference path="../state/project-state.ts" />
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -23,72 +20,75 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var App;
-(function (App) {
-    // ProjectInput Class
-    var ProjectInput = /** @class */ (function (_super) {
-        __extends(ProjectInput, _super);
-        function ProjectInput() {
-            var _this = _super.call(this, 'project-input', 'app', true, 'user-input') || this;
-            _this.titleInputElement = _this.element.querySelector('#title');
-            _this.descriptionInputElement = _this.element.querySelector('#description');
-            _this.peopleInputElement = _this.element.querySelector('#people');
-            _this.configure();
-            return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProjectInput = void 0;
+var base_component_js_1 = require("./base-component.js");
+var validation_js_1 = require("../util/validation.js");
+var autobind_js_1 = require("../decorators/autobind.js");
+var project_state_js_1 = require("../state/project-state.js");
+// ProjectInput Class
+var ProjectInput = /** @class */ (function (_super) {
+    __extends(ProjectInput, _super);
+    function ProjectInput() {
+        var _this = _super.call(this, 'project-input', 'app', true, 'user-input') || this;
+        _this.titleInputElement = _this.element.querySelector('#title');
+        _this.descriptionInputElement = _this.element.querySelector('#description');
+        _this.peopleInputElement = _this.element.querySelector('#people');
+        _this.configure();
+        return _this;
+    }
+    ProjectInput.prototype.configure = function () {
+        this.element.addEventListener('submit', this.submitHandler);
+    };
+    ProjectInput.prototype.renderContent = function () {
+    };
+    ProjectInput.prototype.gatherUserInput = function () {
+        var enteredTitle = this.titleInputElement.value;
+        var enteredDescription = this.descriptionInputElement.value;
+        var enteredPeople = this.peopleInputElement.value;
+        var titleValidatable = {
+            value: enteredTitle,
+            required: true
+        };
+        var descriptionValidatable = {
+            value: enteredDescription,
+            required: true,
+            minLength: 5
+        };
+        var peopleValidatable = {
+            value: +enteredPeople,
+            required: true,
+            min: 1,
+            max: 5
+        };
+        if (!(0, validation_js_1.validate)(titleValidatable) ||
+            !(0, validation_js_1.validate)(descriptionValidatable) ||
+            !(0, validation_js_1.validate)(peopleValidatable)) {
+            alert('Invalid input, please try again');
+            return;
         }
-        ProjectInput.prototype.configure = function () {
-            this.element.addEventListener('submit', this.submitHandler);
-        };
-        ProjectInput.prototype.renderContent = function () {
-        };
-        ProjectInput.prototype.gatherUserInput = function () {
-            var enteredTitle = this.titleInputElement.value;
-            var enteredDescription = this.descriptionInputElement.value;
-            var enteredPeople = this.peopleInputElement.value;
-            var titleValidatable = {
-                value: enteredTitle,
-                required: true
-            };
-            var descriptionValidatable = {
-                value: enteredDescription,
-                required: true,
-                minLength: 5
-            };
-            var peopleValidatable = {
-                value: +enteredPeople,
-                required: true,
-                min: 1,
-                max: 5
-            };
-            if (!App.validate(titleValidatable) ||
-                !App.validate(descriptionValidatable) ||
-                !App.validate(peopleValidatable)) {
-                alert('Invalid input, please try again');
-                return;
-            }
-            else {
-                return [enteredTitle, enteredDescription, +enteredPeople];
-            }
-        };
-        ProjectInput.prototype.clearInputs = function () {
-            this.titleInputElement.value = '';
-            this.descriptionInputElement.value = '';
-            this.peopleInputElement.value = '';
-        };
-        ProjectInput.prototype.submitHandler = function (event) {
-            event.preventDefault();
-            var userInput = this.gatherUserInput();
-            if (Array.isArray(userInput)) {
-                var title = userInput[0], desc = userInput[1], people = userInput[2];
-                App.projectState.addProject(title, desc, people);
-                console.log(title, desc, people);
-                this.clearInputs();
-            }
-        };
-        __decorate([
-            App.autoBind
-        ], ProjectInput.prototype, "submitHandler", null);
-        return ProjectInput;
-    }(App.Component));
-    App.ProjectInput = ProjectInput;
-})(App || (App = {}));
+        else {
+            return [enteredTitle, enteredDescription, +enteredPeople];
+        }
+    };
+    ProjectInput.prototype.clearInputs = function () {
+        this.titleInputElement.value = '';
+        this.descriptionInputElement.value = '';
+        this.peopleInputElement.value = '';
+    };
+    ProjectInput.prototype.submitHandler = function (event) {
+        event.preventDefault();
+        var userInput = this.gatherUserInput();
+        if (Array.isArray(userInput)) {
+            var title = userInput[0], desc = userInput[1], people = userInput[2];
+            project_state_js_1.projectState.addProject(title, desc, people);
+            console.log(title, desc, people);
+            this.clearInputs();
+        }
+    };
+    __decorate([
+        autobind_js_1.autoBind
+    ], ProjectInput.prototype, "submitHandler", null);
+    return ProjectInput;
+}(base_component_js_1.Component));
+exports.ProjectInput = ProjectInput;
