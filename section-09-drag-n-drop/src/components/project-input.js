@@ -23,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectInput = void 0;
 var base_component_js_1 = require("./base-component.js");
-var validation_js_1 = require("../util/validation.js");
+var Validation = require("../util/validation.js");
 var autobind_js_1 = require("../decorators/autobind.js");
 var project_state_js_1 = require("../state/project-state.js");
 // ProjectInput Class
@@ -61,9 +61,9 @@ var ProjectInput = /** @class */ (function (_super) {
             min: 1,
             max: 5
         };
-        if (!(0, validation_js_1.validate)(titleValidatable) ||
-            !(0, validation_js_1.validate)(descriptionValidatable) ||
-            !(0, validation_js_1.validate)(peopleValidatable)) {
+        if (!Validation.validate(titleValidatable) ||
+            !Validation.validate(descriptionValidatable) ||
+            !Validation.validate(peopleValidatable)) {
             alert('Invalid input, please try again');
             return;
         }
@@ -90,5 +90,5 @@ var ProjectInput = /** @class */ (function (_super) {
         autobind_js_1.autoBind
     ], ProjectInput.prototype, "submitHandler", null);
     return ProjectInput;
-}(base_component_js_1.Component));
+}(base_component_js_1.default));
 exports.ProjectInput = ProjectInput;

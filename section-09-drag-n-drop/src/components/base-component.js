@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Component = void 0;
 // Component Base Class
 var Component = /** @class */ (function () {
     function Component(templateId, hostElementId, insertAtStart, newElementId) {
@@ -18,4 +17,4 @@ var Component = /** @class */ (function () {
     };
     return Component;
 }());
-exports.Component = Component;
+exports.default = Component;

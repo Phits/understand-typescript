@@ -95,5 +95,5 @@ var ProjectList = /** @class */ (function (_super) {
         autobind_js_1.autoBind
     ], ProjectList.prototype, "dragLeaveHandler", null);
     return ProjectList;
-}(base_component_js_1.Component));
+}(base_component_js_1.default));
 exports.ProjectList = ProjectList;

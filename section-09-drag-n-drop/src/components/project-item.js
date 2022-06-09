@@ -67,5 +67,5 @@ var ProjectItem = /** @class */ (function (_super) {
         autobind_js_1.autoBind
     ], ProjectItem.prototype, "dragStartHandler", null);
     return ProjectItem;
-}(base_component_js_1.Component));
+}(base_component_js_1.default));
 exports.ProjectItem = ProjectItem;
