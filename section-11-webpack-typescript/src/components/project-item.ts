@@ -30,7 +30,7 @@ export class ProjectItem extends Cmp<HTMLUListElement, HTMLLIElement> implements
     }
 
     dragEndHandler(_: DragEvent) {
-        console.log('DragEnd');
+        // console.log('DragEnd');
     }
 
     configure() {

@@ -70,7 +70,7 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
         if (Array.isArray(userInput)) {
             const [title, desc, people] = userInput;
             projectState.addProject(title, desc, people);
-            console.log(title, desc, people);
+            // console.log(title, desc, people);
             this.clearInputs();
         }
     }
